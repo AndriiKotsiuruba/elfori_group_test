@@ -1,0 +1,44 @@
+version: '3.4'
+
+x-backend-app: &backend-app
+  build:
+    context: .
+    dockerfile: Dockerfile.dev
+    args:
+      DOCKER_BUILDKIT: 1
+  environment:
+    DB_USERNAME: postgres
+    DB_PASSWORD: postgres
+    DB_PORT: 5432
+    DB_HOST: postgres
+    DISABLE_AWS_SECRETS: 'true'
+    RAILS_ENV: development
+    NODE_ENV: development
+    EDITOR: 'vim'
+    WEB_CONCURRENCY: 0
+  stdin_open: true
+  tty: true
+
+services:
+  postgres:
+    image: postgres:11.16-bullseye
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    expose:
+      - 5432
+    volumes:
+      - /var/lib/postgresql/data
+
+  backend:
+    <<: *backend-app
+    entrypoint: ./docker-entrypoint-dev.sh
+    command: bundle exec rails server -b 0.0.0.0
+    volumes:
+      - .:/home/www/rails-app:rw
+      - /home/www/rails-app/tmp/cache/bootsnap
+      - /home/www/rails-app/node_modules
+    ports:
+      - "3000:3000/tcp"
+    depends_on:
+      - postgres

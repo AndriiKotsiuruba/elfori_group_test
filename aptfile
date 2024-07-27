@@ -1,0 +1,17 @@
+apt-transport-https
+ca-certificates
+nodejs
+yarn
+postgresql-client
+build-essential 
+vim 
+libnss3
+git
+gnupg2
+procps
+wget
+libpq-dev
+libxml2-dev
+libxslt1-dev
+nano
+chromium
