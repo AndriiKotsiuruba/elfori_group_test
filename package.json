@@ -1,5 +1,5 @@
 {
-  "name": "matching-game",
+  "name": "elfori_group_test",
   "private": true,
   "dependencies": {
     "@rails/actioncable": "^6.0.0",
@@ -13,5 +13,40 @@
   "version": "0.1.0",
   "devDependencies": {
     "webpack-dev-server": "^3"
-  }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docker:exec": "docker-compose exec backend",
+    "docker:status": "docker-compose ps",
+    "docker:build": "docker-compose up --build",
+    "up": "docker-compose up",
+    "stop": "docker-compose stop",
+    "down": "docker-compose down",
+    "bash": "docker-compose exec backend bash",
+    "c": "docker-compose exec backend rails c",
+    "routes": "docker-compose exec backend rails routes",
+    "db:seed": "docker-compose exec backend rails db:seed",
+    "db:replant": "docker-compose exec backend rails db:seed:replant",
+    "db:migrate": "docker-compose exec backend rails db:migrate",
+    "db:rollback": "docker-compose exec backend rails db:rollback",
+    "db:reset": "docker-compose exec backend rails db:reset",
+    "rubocop": "docker-compose exec -e RAILS_ENV=test backend rubocop",
+    "erblint": "docker-compose exec -e RAILS_ENV=test backend erblint --lint-all",
+    "jslint": "docker-compose exec backend yarn eslint app/javascript",
+    "rspec": "docker-compose exec -e RAILS_ENV=test backend rake parallel:spec",
+    "linters": "yarn rubocop && yarn erblint && yarn jslint && yarn rspec",
+    "docs": "docker-compose exec -e SWAGGER_DRY_RUN=0 -e RAILS_ENV=test backend rails rswag",
+    "annotate": "docker-compose exec backend annotate --models"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndriiKotsiuruba/elfori_group_test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndriiKotsiuruba/elfori_group_test/issues"
+  },
+  "homepage": "https://github.com/AndriiKotsiuruba/elfori_group_test#readme"
+
 }
