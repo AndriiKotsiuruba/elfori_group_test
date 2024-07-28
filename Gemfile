@@ -32,6 +32,12 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
+# Flexible authentication solution for Rails with Warden
+gem 'devise', '~> 4.9', '>= 4.9.4'
+
+# The administration framework for Ruby on Rails.
+gem 'activeadmin', '~> 3.2', '>= 3.2.2'
+
 group :development do
   # The Listen gem listens to file modifications and notifies you about the changes.
   gem 'listen', '~> 3.8'
@@ -73,9 +79,6 @@ group :test do
   # Strategies for cleaning databases. Can be used to ensure a clean slate for testing.
   gem 'database_cleaner', '~> 2.0', '>= 2.0.2'
 
-  # Used to easily generate fake data: names, addresses, phone numbers, etc
-  gem 'faker', '~> 3.2', '>= 3.2.3'
-
   # Retry intermittently failing rspec examples
   gem 'rspec-retry', '~> 0.6.2'
 
@@ -95,6 +98,9 @@ group :development, :test do
 
   # A framework and DSL for defining and using factories
   gem 'factory_bot_rails', '~> 6.4', '>= 6.4.3'
+
+  # Used to easily generate fake data: names, addresses, phone numbers, etc
+  gem 'faker', '~> 3.2', '>= 3.2.3'
 
   # Testing framework for Rails
   gem 'rspec-rails', '~> 6.1', '>= 6.1.1'

@@ -33,7 +33,7 @@
     "rubocop": "docker-compose exec -e RAILS_ENV=test backend rubocop",
     "erblint": "docker-compose exec -e RAILS_ENV=test backend erblint --lint-all",
     "jslint": "docker-compose exec backend yarn eslint app/javascript",
-    "rspec": "docker-compose exec -e RAILS_ENV=test backend rake parallel:spec",
+    "rspec": "docker-compose exec -e RAILS_ENV=test backend rspec",
     "linters": "yarn rubocop && yarn erblint && yarn jslint && yarn rspec",
     "docs": "docker-compose exec -e SWAGGER_DRY_RUN=0 -e RAILS_ENV=test backend rails rswag",
     "annotate": "docker-compose exec backend annotate --models"
