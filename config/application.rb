@@ -21,7 +21,7 @@ require 'sprockets/railtie'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module MatchingGame
+module ElforiGroupTest
 
   class Application < Rails::Application
 

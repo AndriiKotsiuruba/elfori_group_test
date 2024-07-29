@@ -1,0 +1,32 @@
+<h1><%= @collection.title %></h1>
+
+<p>
+  <%= @collection.description %>
+</p>
+
+<%= form_for(@invoice, url: collection_invoices_path(@collection)) do |f| %>
+  <% if current_user.blank? %>
+    <%= f.fields_for :user do |u_f| %>
+      <div class="field">
+        <%= u_f.label :email %><br />
+        <%= u_f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+
+      <div class="field">
+        <%= u_f.label :name %><br />
+        <%= u_f.text_field :name, autocomplete: "given-name" %>
+      </div>
+
+      <div class="field">
+        <%= u_f.label :surname %><br />
+        <%= u_f.text_field :surname, autocomplete: "family-name" %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit "Invoice" %>
+  </div>
+<% end %>
+
+<%= link_to 'Back to Collections', collections_path %>
