@@ -17,37 +17,47 @@ WORKDIR /home
 COPY aptfile aptfile
 
 # Layer 5. Updating and installing the necessary software for the Web server. Cleaning to reduce image size.
-RUN apt-get update -qq && xargs apt-get install --no-install-recommends -yq < aptfile && export DEBIAN_FRONTEND=noninteractive \
-  && apt-get clean && apt-get autoclean && apt-get clean all \
-  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
-  && truncate -s 0 /var/log/*log \
-  && rm aptfile
-  
-# Layer 6. Inherit default variabels
+RUN apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
+      libpq-dev \
+      apt-utils \
+      curl \
+      gnupg \
+      nano \
+      git \
+      chromium
+
+# Layer 6. Install NodeJS for builder.
+RUN mkdir -p /etc/apt/keyrings && \
+    curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg && \
+    echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_20.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list && \
+    apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends nodejs && \
+    npm install -g yarn
+
+# Layer 7. Inherit default variabels
 ARG PATH=$GEM_HOME/bin:$GEM_HOME/gems/bin:$PATH
 ARG DEFAULT_APP_HOME
 ENV APP_HOME=${DEFAULT_APP_HOME}
 ENV LANG C.UTF-8
 
-# Layer 7. Install needed version of bundler 
+# Layer 8. Install needed version of bundler 
 # RUN gem install bundler -v 2.3.26 
 RUN gem install bundler
  
-# Layer 8. Adding config options for bundler.
+# Layer 9. Adding config options for bundler.
 RUN echo "gem: --no-rdoc --no-ri" > /etc/gemrc
 
-# Layer 9. Creating and specifying the directory in which the application will be placed.
+# Layer 10. Creating and specifying the directory in which the application will be placed.
 WORKDIR $APP_HOME
 
-# Layer 10. Copying Gemfile, Gemfile.lock and all .json files.
+# Layer 11. Copying Gemfile, Gemfile.lock and all .json files.
 COPY *.json ./
 COPY Gemfile* ./
 
-# Layer 11. Installing dependencies.
+# Layer 12. Installing dependencies.
 RUN bundle check | bundle install --jobs 10
 
-# Layer 12. Copying full application.
+# Layer 13. Copying full application.
 COPY . .
 
-# Layer 13. Command to run application.
+# Layer 14. Command to run application.
 CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]  

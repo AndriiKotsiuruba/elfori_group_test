@@ -20,28 +20,25 @@
 #
 class AdminUser < ApplicationRecord
 
-    # == Extensions ===========================================================
-    devise :database_authenticatable, :recoverable, :rememberable, :validatable
+  # == Extensions ===========================================================
+  devise :database_authenticatable, :recoverable, :rememberable, :validatable
 
-    # == Constants ============================================================
-  
-    # == Attributes ===========================================================
-  
-    # == Relationships ========================================================
-  
-    # == Validations ==========================================================
-    validates :name, :surname, :email, :encrypted_password, presence: true
-    validates :email, uniqueness: true
-  
-    # == Scopes ===============================================================
-  
-    # == Callbacks ============================================================
-  
-    # == Class Methods ========================================================
-    def self.ransackable_attributes(auth_object = nil)
-      ["email", "name", "surname"]
-    end
-  
-    # == Instance Methods =====================================================
+  # == Constants ============================================================
+
+  # == Attributes ===========================================================
+
+  # == Relationships ========================================================
+
+  # == Validations ==========================================================
+  validates :name, :surname, :email, :encrypted_password, presence: true
+  validates :email, uniqueness: true
+
+  # == Scopes ===============================================================
+
+  # == Callbacks ============================================================
+
+  # == Class Methods ========================================================
+
+  # == Instance Methods =====================================================
 
 end

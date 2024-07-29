@@ -38,6 +38,18 @@ gem 'devise', '~> 4.9', '>= 4.9.4'
 # The administration framework for Ruby on Rails.
 gem 'activeadmin', '~> 3.2', '>= 3.2.2'
 
+# File Attachment toolkit for Ruby applications
+gem 'shrine', '~> 3.6'
+
+# Official AWS Ruby gem for Amazon Simple Storage Service
+gem 'aws-sdk-s3', '~> 1.14'
+
+# An Active Admin plugin to use Froala WYSIWYG editor
+gem 'activeadmin_froala_editor', '~> 1.1'
+
+# Easy way to build and manage commands (service objects)
+gem 'simple_command', '~> 1.0', '>= 1.0.1'
+
 group :development do
   # The Listen gem listens to file modifications and notifies you about the changes.
   gem 'listen', '~> 3.8'

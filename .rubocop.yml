@@ -130,9 +130,7 @@ Lint/StructNewOverride:
   Enabled: true
 
 Lint/MissingSuper:
-  Exclude:
-    - 'app/queries/**/*'
-    - app/services/web_hooks/base_web_hook.rb
+  Enabled: false
 
 Metrics/BlockLength:
   Exclude:
@@ -215,6 +213,14 @@ RSpec/VariableName:
 RSpec/NoExpectationExample:
   Exclude:
     - spec/factories/**
+
+Rails/LexicallyScopedActionFilter:
+  Exclude:
+    - 'app/controllers/users/registrations_controller.rb'
+
+Layout/LineLength:
+  Exclude:
+    - 'config/initializers/devise.rb'
 
 # Add RSwag integration in tests
 # TODO: Try to move to separate file
