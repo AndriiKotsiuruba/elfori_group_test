@@ -1,0 +1,8 @@
+
+<div class="d-flex justify-content-end">
+  <% if current_user.blank? %>
+    <%= render 'collections/partials/invoice_modal' %>
+  <% else %>
+    <%= render 'collections/partials/invoice_button' %>
+  <% end %>
+</div>

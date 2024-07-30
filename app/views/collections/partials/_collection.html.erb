@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="card card-collection">
+    <div class="card-body">
+      <h1 class="card-title"><%= @collection.title %></h1>
+      <p class="card-text"><%= @collection.description.html_safe %></p>
+    </div>
+    <%= image_tag(@collection.images.last&.file_url, class: "card-img-button" ) %>
+  </div>
+</div>

@@ -39,3 +39,5 @@ en:
     something_went_wrong: Something went wrong
   collections:
     deleted: Collection was deleted
+    invoices:
+      success: Your price request has been successfully saved. Our manager will contact you soon

@@ -1,0 +1,39 @@
+
+<button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Invoice
+</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <%= form_for(@invoice, url: collection_invoices_path(@collection)) do |f| %>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Please give your details</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <%= f.fields_for :user do |u_f| %>
+            <div class="field">
+              <%= u_f.label :email, class: "col-form-label" %>
+              <%= u_f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+            </div>
+
+            <div class="field">
+              <%= u_f.label :name, class: "col-form-label" %>
+              <%= u_f.text_field :name, autocomplete: "given-name", class: "form-control" %>
+            </div>
+
+            <div class="field">
+              <%= u_f.label :surname, class: "col-form-label" %>
+              <%= u_f.text_field :surname, autocomplete: "family-name", class: "form-control" %>
+            </div>
+          <% end %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
+          <%= f.submit "Invoice", class: "btn btn-outline-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
