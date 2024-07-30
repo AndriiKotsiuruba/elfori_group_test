@@ -50,6 +50,22 @@ gem 'activeadmin_froala_editor', '~> 1.1'
 # Easy way to build and manage commands (service objects)
 gem 'simple_command', '~> 1.0', '>= 1.0.1'
 
+# A ruby implementation of the RFC 7519 OAuth JSON Web Token (JWT) standard.
+gem 'jwt', '~> 2.3.0'
+
+# Alba is the fastest JSON serializer for Ruby.
+gem 'alba', '~> 3.0',  '>= 3.0.1'
+gem 'oj',   '~> 3.16', '>= 3.16.1'
+
+# Seamlessly adds a Swagger to Rails-based API's
+gem 'rswag-api', '~> 2.5.1'
+gem 'rswag-ui', '~> 2.5.1'
+
+# dry-rb is a collection of next-generation Ruby libraries
+gem 'dry-struct', '~> 1.6'
+gem 'dry-types', '~> 1.7', '>= 1.7.2'
+gem 'dry-validation', '~> 1.10'
+
 group :development do
   # The Listen gem listens to file modifications and notifies you about the changes.
   gem 'listen', '~> 3.8'

@@ -1,8 +1,8 @@
 module Invoices
 
-  class Create < BaseService
+  class Create
 
-    prepend SimpleCommand
+    include BaseService
 
     attr_reader :collection, :current_user, :user_attribure
 

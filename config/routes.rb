@@ -7,7 +7,19 @@ Rails.application.routes.draw do
   }
   ActiveAdmin.routes(self)
 
-  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
+  if Rails.env.development?
+    mount Rswag::Api::Engine => '/api-docs'
+    mount Rswag::Ui::Engine  => '/api-docs'
+    mount LetterOpenerWeb::Engine, at: '/letter_opener'
+  end
+
+  namespace :api do
+    namespace :v1 do
+      resources :collections, except: %i[edit new]
+
+      resource :authentication, only: :create
+    end
+  end
 
   resources :collections, only: %i[index show] do
     scope module: :collections do

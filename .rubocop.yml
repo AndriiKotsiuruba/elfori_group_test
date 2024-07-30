@@ -238,3 +238,7 @@ RSpec:
         - response
     Expectations:
       - run_test!
+
+RSpec/VariableName:
+  Exclude:
+    - 'spec/requests/api/v1/*'

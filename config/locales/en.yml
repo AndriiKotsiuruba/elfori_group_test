@@ -33,4 +33,9 @@ en:
   collections:
     invoices:
       create:
-        success: The price request has been successfully submitted 
+        success: The price request has been successfully submitted
+  errors:
+    access_denied: Access Denied
+    something_went_wrong: Something went wrong
+  collections:
+    deleted: Collection was deleted

@@ -10,9 +10,9 @@
 #  updated_at  :datetime         not null
 #
 FactoryBot.define do
-  factory :colection do
+  factory :collection do
     title                 { Faker::Commerce.department }
     publish               { true }
-    description { true }
+    description           { Faker::Food.description }
   end
 end

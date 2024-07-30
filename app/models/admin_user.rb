@@ -40,5 +40,8 @@ class AdminUser < ApplicationRecord
   # == Class Methods ========================================================
 
   # == Instance Methods =====================================================
+  def token_payload
+    { id:, email: }
+  end
 
 end
