@@ -1,0 +1,32 @@
+.header-toggler {
+  border: none;
+  outline: none;
+}
+
+.header-toggler:focus {
+  box-shadow: none;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  font-weight: 300;
+  letter-spacing: 3px;
+  height: 85px;
+}
+
+.navbar-nav .nav-link {
+  letter-spacing: 3px;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #000000;
+}
+
+.alerts {
+  position: fixed;
+  top: 95px;
+  right: 10px;
+  z-index: 1000;
+}

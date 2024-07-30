@@ -1,0 +1,5 @@
+<%= form_for(@invoice, url: collection_invoices_path(@collection)) do |f| %>
+  <div class="actions">
+    <%= f.submit "Invoice", class: "btn btn-outline-secondary" %>
+  </div>
+<% end %>

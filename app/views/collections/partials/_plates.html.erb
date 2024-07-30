@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="col d-flex justify-content-end">
+    <%= image_tag 'atlas_logo.svg', size: 150 %>
+  </div>
+</div>
+<div class="row">
+  <% @collection.plates.each do |plate| %>
+    <%= render 'collections/partials/plate', plate: plate %>
+  <% end %>
+</div>

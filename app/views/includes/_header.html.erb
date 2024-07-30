@@ -1,9 +1,73 @@
-<% if user_signed_in? %> 
-<div> Welcome <%= current_user.name %> </div> 
-  <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
-<% else %>
-  <%= button_to "Sign in", new_user_session_path %> 
-<% end %>
+<nav class="navbar bg-body-tertiary fixed-top">
+  <div class="container-fluid">
+    <div class="d-flex align-items-center">
+      <button class="navbar-toggler header-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+        <%= image_tag 'header/menu.svg' %>
+      </button>
+      <div class="d-none d-lg-block">
+        <%= back_link %>
+      </div>
+    </div>
+    <div class="align-items-center">
+      <%= link_to root_path, class: "navbar-brand" do %>
+        <%= image_tag 'header/logo.svg', class: "img-fluid" %>
+      <% end %>
+    </div>
+    <div class="d-none d-lg-block">
+      <%= CONTACT_PHONE %>
+    </div>
+    <div class="d-flex align-items-center d-block d-md-none">
+      <div class="me-2">
+        <%= instagram_link 'Inst' %>
+      </div>
+      <div>
+        <%= facebook_link 'Fb' %>
+      </div>
+    </div>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+      <div class="offcanvas-header">
+        <%= link_to root_path, class: "navbar-brand" do %>
+          <%= image_tag 'header/logo.svg', class: "img-fluid" %>
+        <% end %>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <li class="nav-item">
+            <%= link_to "Collections", collections_path, class: "nav-link" %>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link disabled" aria-disabled="true" href="#">Plate</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">Search</a>
+          </li>
+          <% if user_signed_in? %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Your account <%= current_user.name %>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item disabled" href="#">Settings</a></li>
+                <li><a class="dropdown-item disabled" href="#">Orders</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <%= button_to "Sign out", destroy_user_session_path, class: "dropdown-item", method: :delete %>
+              </ul>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "Sign in", new_user_session_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Sign up", new_user_registration_path, class: "nav-link" %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
