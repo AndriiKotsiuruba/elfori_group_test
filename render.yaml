@@ -1,0 +1,19 @@
+databases:
+  - name: postgres
+    ipAllowList: []
+    plan: free
+
+services:
+  - type: web
+    name: rails
+    env: ruby
+    buildCommand: "./render-build.sh"
+    startCommand: "bundle exec rails s"
+    plan: free
+    envVars:
+      - key: RAILS_MASTER_KEY
+        sync: false
+      - key: DB_HOST
+        fromDatabase:
+          name: postgres
+          property: connectionString
